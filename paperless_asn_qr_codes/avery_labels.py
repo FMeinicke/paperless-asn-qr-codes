@@ -2,7 +2,7 @@ from dataclasses import dataclass, KW_ONLY
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import LETTER, A4
-from reportlab.lib.units import mm
+from reportlab.lib.units import mm, cm
 
 # Usage:
 #   label = AveryLabels.AveryLabel(5160)
@@ -80,6 +80,15 @@ labelInfo: dict[str, LabelInfo] = {
         gutter_size=(0, 0),
         margin=(54, 36),
         pagesize=LETTER,
+    ),
+    # Herma 5 x 16 (page margins left/top reduced by 3.5mm due to Ocular's print margins)
+    "herma10901": LabelInfo(
+        labels_horizontal=5,
+        labels_vertical=16,
+        label_size=(3.52 * cm, 1.69 * cm),
+        gutter_size=(0.29 * cm, 0),
+        margin=(1.15 * cm, 1.35 * cm),
+        pagesize=A4,
     ),
 }
 
